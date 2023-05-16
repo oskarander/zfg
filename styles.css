@@ -1,0 +1,222 @@
+/* General styles */
+:root {
+  --primary-color: #228b22;
+  --secondary-color: #32cd32;
+  --disabled-color: #808080;
+  --background-color: #eae9e8b5;
+  --box-shadow-color: rgba(0, 0, 0, 0.12);
+  --text-color: #ffffff;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  background-image: url('https://oskarander.github.io/golfappalpha/Startbild-GGK.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Header styles */
+header {
+  background-color: var(--primary-color);
+  padding: 10px 0;
+  color: var(--text-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+/* Navigation styles */
+#navigation {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#navigation a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* App styles */
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+td {
+  background-color: #f0f0f0;
+}
+
+/* Participant and Golfer styles */
+.participant-list,
+.golfer-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.participant-item,
+.golfer-item {
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  background-color: #ffffffae;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px var(--box-shadow-color), 0 1px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Participant styles */
+.participants {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.participant-item {
+  background-color: var(--primary-color);
+  color: #000000; /* Change text color to black */
+  width: calc(33.333% - 20px);
+  position: relative;
+  border-radius: 10px;
+  background-color: rgba(240, 240, 240, 0.7); /* Change this to the desired light grey color with 0.7 transparency */
+}
+
+.participant-item.active {  background-color: var(--secondary-color);
+  border: 2px solid var(--background-color);
+  transform: scale(1.05);
+  background-color: rgba(46, 177, 34, 0.7);
+  animation: pulsate 2s infinite ease-in-out;
+}
+
+.participant-item.active::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #4caf50;
+}
+
+.participant-item ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Golfer button styles */
+.golfer-item {
+  font-family: 'Cormorant Garamond', serif;
+  background-color: rgba(34, 139, 34, 0.7); /* Change this to the desired green color with 0.7 transparency */
+  color: var(--text-color);
+  border: none;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: calc(25% - 20px);
+}
+
+
+.golfer-item.disabled {
+  background-color: var(--disabled-color);
+  cursor: not-allowed;
+  opacity: 0.5; /* reduce opacity of disabled button */
+  pointer-events: none; /* disable click events on disabled button */
+}
+
+.golfer-item.selected {
+  background-color: rgba(128, 128, 128, 0.7); /* Change this to the desired grey color with 0.7 transparency */
+}
+
+
+.golfer-item:not(.disabled):hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.1);
+}
+
+.golfer-item.disabled:hover {
+  transform: scale(1);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .participant-item {
+    width: calc(50% - 20px);
+  }
+
+  .golfer-item {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .participant-item,
+  .golfer-item {
+    width: calc(100% - 20px);
+  }
+}
+
+/* Pulsate animation */
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.golfer-item.selected {
+  background-color: var(--disabled-color);
+}
